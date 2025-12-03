@@ -308,64 +308,17 @@
       opacity:0.6;
     }
 
-  /* 모바일용 레이아웃 */
-@media (max-width: 900px) {
-
-  .main-inner {
-    padding: 10px;
-    gap: 14px;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 14px;
-
-    margin-top: 50px;          
-  }
-
-  .sidebar-header {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-    margin-right: 6px;
-  }
-
-  .icon-btn {
-    width: 46px;
-    height: 46px;
-    border-radius: 8px;
-  }
-
-  .icon-btn img {
-    width: 26px;
-    height: 26px;
-  }
-
-  .content-panel {
-    max-width: 100%;
-    min-width: 0;
-    padding: 20px 22px;
-  }
-
-  .content-panel-body {
-    font-size: 0.92rem;
-    line-height: 1.55;
-  }
-
-  .footer-label {
-    font-size: 0.52rem;
-    letter-spacing: 0.16em;
-  }
-}
-
+    @media (max-width: 900px) {
+      .main-inner {
+        padding:20px;
+        gap:20px;
+      }
+      .content-panel {
+        max-width:90vw;
+        min-width:0;
+      }
+      .sidebar { display:none; }
+    }
 
     /* CREATOR 패널 애니메이션 */
     .creator-line {
@@ -481,7 +434,7 @@
     </div>
   </div>
 
-  <!-- 브금 플레이어 -->
+  <!-- 브금 -->
   <audio id="bgm" loop></audio>
 
   <script>
@@ -491,7 +444,7 @@
       "HOLY02E": "emily"
     };
 
-    // 시나리오별 텍스트 & 영상 파일
+    // 시나리오
     const scenarios = {
       adam: {
         header: "VOXTEK // BIRTHDAY CHANNEL : ADAM",
@@ -580,7 +533,7 @@ From. Velvette (pilot)`,
       }
     };
 
-    // 브금 매핑
+    // 브금
     const bgmMap = {
       adam: "Cave.mp3",
       emily: "Falling.mp3"
@@ -698,7 +651,7 @@ From. Velvette (pilot)`,
 
       panelHeader.textContent = scenario.header;
 
-      // CREATOR 전용 연출 (icon_3)
+      // CREATOR
       if (iconIndex === "3") {
         panelBody.innerHTML = `
           <div class="creator-line" style="animation-delay:0.00s">🕶 Director · V-Sync</div>
@@ -713,12 +666,12 @@ From. Velvette (pilot)`,
           <div class="creator-line" style="animation-delay:0.45s">
             「 <span class="highlight-signal">Acknowledgment signal transmitted。Thank you。」 
           </div>
-          <div class="creator-line" style="animation-delay:0.60s">
+          <div class="creator-line" style="animation-delay:0.65s">
             「 확인 응답 전송 완료。감사합니다。」
           </div>
         `;
       }
-      // 영상 (icon_4)
+      // 영상
       else if (iconIndex === "4") {
         const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4"
         panelBody.innerHTML = `
@@ -743,7 +696,7 @@ From. Velvette (pilot)`,
       shootBeam(iconButton);
     }
 
-    // 아이콘 → 패널 빔 애니메이션
+    // 아이콘 애니메이션
     function shootBeam(iconButton) {
       const iconRect = iconButton.getBoundingClientRect();
       const panelRect = panel.getBoundingClientRect();
