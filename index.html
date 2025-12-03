@@ -312,45 +312,58 @@
 @media (max-width: 900px) {
 
   .main-inner {
-    padding:16px 12px;
-    gap:16px;
+    padding: 10px 10px;
+    gap: 10px;
+    flex-direction: column;   
+    align-items: stretch;
   }
 
   .sidebar {
-    width:56px;
+    width: 100%;
+    height: auto;
+    flex-direction: row;         
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
   }
 
   .sidebar-header {
-    font-size:0.55rem;
-    letter-spacing:0.18em;
-    margin-bottom:16px;
-    padding-bottom:8px;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    margin: 0 8px 0 2px;
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   .icon-btn {
-    width:44px;
-    height:44px;
-    border-radius:8px;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
   }
 
   .icon-btn img {
-    width:24px;
-    height:24px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .center-area {
+    margin-top: 4px;
   }
 
   .content-panel {
-    max-width:100%;
-    min-width:0;
+    max-width: 100%;
+    min-width: 0;
+    padding: 18px 18px;
   }
 
   .content-panel-body {
-    font-size:0.9rem;
-    line-height:1.55;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .footer-label {
-    font-size:0.55rem;
-    letter-spacing:0.18em;
+    font-size: 0.5rem;
+    letter-spacing: 0.16em;
   }
 }
 
