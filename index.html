@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vox Birthday Access · VoxTek Internal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; }
+
+    html, body {
+      width:100%;
+      height:100%;
+      background:#000;
+      color:#e8f7ff;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow:hidden;
+    }
+
+    .hidden { display:none !important; }
+
+    /* 공통 화면 레이아웃 */
+    .screen {
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* 게이트 화면 */
+    #gate-screen {
+      flex-direction:column;
+      background:#000;
+    }
+
+    .gate-message {
+      font-size:1.6rem;
+      color:#f5f5f5;
+      text-shadow:0 0 8px rgba(255,255,255,0.8);
+      margin-bottom:40px;
+      text-align:center;
+      white-space:pre-line;
+    }
+
+    .gate-input-wrap {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+    }
+
+    #gate-input {
+      width:260px;
+      padding:10px 12px;
+      border:none;
+      border-bottom:1px solid #999;
+      background:#000;
+      color:#e8f7ff;
+      font-size:1.1rem;
+      text-align:center;
+      outline:none;
+    }
+
+    #gate-input:focus {
+      border-color:#00d5ff;
+      box-shadow:0 0 8px rgba(0,213,255,0.7);
+    }
+
+    #gate-button {
+      padding:8px 24px;
+      border:1px solid #e8f7ff;
+      background:#111;
+      color:#e8f7ff;
+      cursor:pointer;
+      font-size:0.95rem;
+      letter-spacing:0.15em;
+    }
+
+    #gate-button:hover {
+      background:#00d5ff;
+      color:#02040a;
+    }
+
+    .shake {
+      animation:shake 0.25s linear;
+    }
+
+    @keyframes shake {
+      0%,100% { transform:translateX(0); }
+      20% { transform:translateX(-5px); }
+      40% { transform:translateX(5px); }
+      60% { transform:translateX(-5px); }
+      80% { transform:translateX(5px); }
+    }
+
+    /* 전환(타이핑) */
+    #transition-screen {
+      background:#02040a;
+    }
+
+    .transition-text {
+      font-size:1.4rem;
+      max-width:720px;
+      text-align:center;
+      text-shadow:0 0 10px rgba(0,213,255,0.9);
+      line-height:1.5;
+      white-space:pre-line;
+    }
+
+    .cursor {
+      display:inline-block;
+      width:1ch;
+      animation:blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%,50% { opacity:1; }
+      51%,100% { opacity:0; }
+    }
+
+    /* 메인 */
+    #main-screen {
+      background:radial-gradient(circle at top, #182235 0, #02040a 55%, #000 100%);
+      color:#e8f7ff;
+    }
+
+    .main-inner {
+      position:relative;
+      width:100%;
+      height:100%;
+      display:flex;
+      padding:40px 60px;
+      gap:40px;
+    }
+
+    /* 좌측 사이드바 */
+    .sidebar {
+      width:72px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+    }
+
+    .sidebar-header {
+      width:100%;
+      margin-bottom:30px;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      padding-bottom:14px;
+      text-align:center;
+      font-size:0.7rem;
+      letter-spacing:0.24em;
+      text-transform:uppercase;
+      color:#6fb8ff;
+    }
+
+    .icon-btn {
+      width:52px;
+      height:52px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:linear-gradient(145deg,#040812,#151c28);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform 0.15s ease, box-shadow 0.15s ease, border 0.15s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .icon-btn img {
+      width:32px;
+      height:32px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 3px rgba(0,213,255,0.8));
+    }
+
+    .icon-btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 0 12px rgba(0,213,255,0.5);
+      border-color:#00d5ff;
+    }
+
+    .icon-btn:active {
+      transform:scale(0.96);
+    }
+
+    /* 중앙 영역 */
+    .center-area {
+      flex:1;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .logo-wrap {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:0.2;
+      filter:drop-shadow(0 0 35px rgba(0,247,255,0.7));
+    }
+
+    .logo-wrap img {
+      max-width:360px;
+      width:32vw;
+      height:auto;
+    }
+
+    /* 콘텐츠 패널 */
+    .content-panel {
+      position:absolute;
+      max-width:720px;
+      min-width:420px;
+      max-height:70vh;
+      padding:24px 26px;
+      border-radius:18px;
+      background:rgba(5,10,20,0.92);
+      border:1px solid rgba(0,213,255,0.5);
+      box-shadow:0 0 22px rgba(0,213,255,0.55);
+      backdrop-filter:blur(10px);
+      overflow-y:auto;
+      line-height:1.6;
+      font-size:0.95rem;
+      text-align:left;
+      pointer-events:auto;
+    }
+
+    .content-panel::-webkit-scrollbar {
+      width:6px;
+    }
+
+    .content-panel::-webkit-scrollbar-thumb {
+      background:rgba(0,213,255,0.65);
+      border-radius:999px;
+    }
+
+    .content-panel-header {
+      font-size:0.79rem;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      color:#7fdfff;
+      margin-bottom:14px;
+      border-bottom:1px solid rgba(255,255,255,0.12);
+      padding-bottom:8px;
+    }
+
+    .content-panel-body pre {
+      font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      white-space:pre-wrap;
+      word-break:keep-all;
+    }
+
+    /* 패널 등장 */
+    .panel-animate {
+      animation:panelIn 0.35s ease-out;
+      transform-origin:center;
+    }
+
+    @keyframes panelIn {
+      0% {
+        transform:scale(0.75);
+        opacity:0;
+        box-shadow:0 0 0 rgba(0,213,255,0.0);
+      }
+      50% {
+        transform:scale(1.03);
+        opacity:1;
+        box-shadow:0 0 50px rgba(0,213,255,0.9);
+      }
+      100% {
+        transform:scale(1.0);
+        opacity:1;
+        box-shadow:0 0 22px rgba(0,213,255,0.55);
+      }
+    }
+
+    /* 아이콘 → 패널 빔 */
+    .beam {
+      position:absolute;
+      height:2px;
+      background:linear-gradient(90deg, rgba(0,0,0,0) 0%, #00f7ff 40%, #ff2e86 100%);
+      pointer-events:none;
+      opacity:0;
+    }
+
+    .beam-animate {
+      animation:beamShoot 0.28s ease-out;
+    }
+
+    @keyframes beamShoot {
+      0% { width:0; opacity:1; }
+      100% { width:100%; opacity:0; }
+    }
+
+    /* 하단 작은 라벨 */
+    .footer-label {
+      position:absolute;
+      bottom:10px;
+      width:100%;
+      text-align:center;
+      font-size:0.6rem;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+      opacity:0.6;
+    }
+
+    @media (max-width: 900px) {
+      .main-inner {
+        padding:20px;
+        gap:20px;
+      }
+      .content-panel {
+        max-width:90vw;
+        min-width:0;
+      }
+      .sidebar { display:none; }
+    }
+
+    /* CREATOR 패널 애니메이션 */
+    .creator-line {
+      opacity: 0;
+      transform: translateX(-8px);
+      animation: logIn 0.45s ease forwards;
+    }
+
+    @keyframes logIn {
+      0% {
+        opacity:0;
+        transform: translateX(-8px);
+      }
+      100% {
+        opacity:1;
+        transform: translateX(0);
+      }
+    }
+
+    .creator-line::before {
+      content: "◆";
+      color: #00eaff;
+      margin-right: 8px;
+      text-shadow: 0 0 6px rgba(0,255,255,0.8);
+    }
+
+    .highlight-signal {
+      color: #00f7ff;
+      text-shadow: 0 0 8px rgba(0,255,255,0.9);
+      font-weight:600;
+    }
+
+    /* 사운드 버튼 */
+    .sound-btn {
+      position:absolute;
+      top:20px;
+      right:30px;
+      padding:6px 14px;
+      background:rgba(0,0,0,0.5);
+      border:1px solid rgba(0,213,255,0.6);
+      color:#7fdfff;
+      font-size:0.8rem;
+      letter-spacing:0.12em;
+      cursor:pointer;
+      border-radius:8px;
+      backdrop-filter:blur(4px);
+      transition:0.15s ease;
+      z-index:10;
+    }
+
+    .sound-btn:hover {
+      color:#00eaff;
+      border-color:#00eaff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 게이트 화면 -->
+  <div id="gate-screen" class="screen">
+    <div class="gate-message" id="gate-message">
+그래… 여길 열 자격이 있는지, 보여봐.
+    </div>
+    <div class="gate-input-wrap">
+      <input id="gate-input" type="text" autocomplete="off" placeholder="ACCESS CODE" />
+      <button id="gate-button">확인</button>
+    </div>
+  </div>
+
+  <!-- 전환(타이핑) 화면 -->
+  <div id="transition-screen" class="screen hidden">
+    <div class="transition-text" id="transition-text"></div>
+  </div>
+
+  <!-- 메인 VOXTEK 화면 -->
+  <div id="main-screen" class="screen hidden">
+    <div id="sound-toggle" class="sound-btn">SOUND OFF</div>
+
+    <div class="main-inner">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          VOXTEK<br/>CHANNEL
+        </div>
+        <button class="icon-btn" data-icon="1">
+          <img src="icon_1.png" alt="icon 1">
+        </button>
+        <button class="icon-btn" data-icon="2">
+          <img src="icon_2.png" alt="icon 2">
+        </button>
+        <button class="icon-btn" data-icon="3">
+          <img src="icon_3.png" alt="icon 3">
+        </button>
+        <button class="icon-btn" data-icon="4">
+          <img src="icon_4.png" alt="icon 4">
+        </button>
+      </div>
+
+      <div class="center-area">
+        <div class="logo-wrap" id="logo-wrap">
+          <img src="voxtek_1.png" alt="VoxTek Logo">
+        </div>
+
+        <div class="content-panel hidden" id="content-panel">
+          <div class="content-panel-header" id="panel-header">VOXTEK INTERNAL MESSAGE</div>
+          <div class="content-panel-body" id="panel-body"></div>
+        </div>
+
+        <div class="beam" id="beam"></div>
+
+        <div class="footer-label">
+          VOX PRIVATE CHANNEL · AUTHORIZED USERS ONLY
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 브금 플레이어 -->
+  <audio id="bgm" loop></audio>
+
+  <script>
+    // 코드 → 시나리오 매핑
+    const codeMap = {
+      "FUCK01A": "adam",
+      "HOLY02E": "emily"
+    };
+
+    // 시나리오별 텍스트 & 영상 파일
+    const scenarios = {
+      adam: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : ADAM",
+        icons: {
+          1: `아담, 생일이라고?
+하. 씨발, 지금 네 꼴을 생각하면 그게 축하할 일인지 좆도 모르겠군.
+그래도 일단은 말은 해줄게. Happy birthday.
+···됐어? 이제 듣기나 해.
+
+오늘만큼은 네 그 허접하고 지랄맞은 기행도 내가 잠깐 눈 감아줄 생각이야. 
+그걸 생일 선물이라고 치자.
+근데 착각은 하지 마.
+내가 널 좋아해서가 아니라, 지금 네 병신 같은 꼴에 에너지 쓰기 싫어서 그러는 거니까. 그 이상도 이하도 아니야.
+
+그러니까 오늘 하루는 네 특유의 엿같은 충동질 좀 집어넣고 조용히 굴어. 아니면 네 생일 파티엔 케이크 대신, 네가 무슨 병신 같은 사고 치는 장면을 대놓고 광고로 틀어대줄 테니까.
+
+그래도, 뭐.
+생일은 생일이니까 한 번 더 말해준다.
+Happy fucking birthday, Adam.
+
+내년에는 제발──
+나한테 말도 안 되는 개짓거리 좀 덜 쳐라. 진심으로.
+예를 들어, 내 안테나를 또 멋대로 잡고 들어올린다던가 하는 짓.
+두 번 죽고 싶은 게 아니라면 말이야.
+
+From. Vox`,
+          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
+From. Blitzø
+
+최초의 인간 딕 마스터 생일 축하드립니다.
+From. Lute
+
+천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
+From. Velvette (pilot)`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Adam.mp4`
+        }
+      },
+      emily: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : EMILY",
+        icons: {
+          1: `흠, 에밀리. 그렇지··· 오늘이 네 생일이라던데.
+일단은 축하해. 그래, 이런 말을 내가 먼저 하는 건 거의 없다는 거 알잖아? 네가 태어난 게 내게 그다지 중요한 일은 아니지만 말이야.
+
+뭐, 네가 천사든 말든 상관없어. 생일이면 생일답게 받아둬. 평소엔 죄다 '착함'과 '용서' 타령이지만, 오늘만큼은 조금은 자기중심적으로 굴어도 되지 않겠어?
+
+그러니까──
+네가 지키고 싶어 하는 그 '순결한 이미지', 오늘 하루만큼은 꺼내서 먼지라도 털어. 그리고 웃어.
+천국이든 지옥이든, 네 생일을 이렇게까지 챙겨주는 건 나밖에 없을 테니. 아, 네 친구들이 있다고? 그건 내 알 바가 아니지.
+
+* 중략 * 
+
+···뭐? 선물?
+하, 기대하지 마. 대신 광고 하나면 충분히 값어치 하잖아?
+「에밀리 생일 기념, VoxTek 정품 디지털 축복 패키지. 지금 다운로드하세요. 복스테크, 우리를 믿고 당신의 돈을 지불하세요.」
+···농담이야. 진짜로 만들면 팔릴지는 모르겠지만, 적어도 네 반응은 볼만하네.
+
+어쨌든, Happy Birthday, Emily.
+네가 지켜보는 곳엔 언제나 빛이 있다던데···
+그럼 오늘 하루는, 내 화면의 빛도 좀 봐주는 게 어때?
+
+From. Vox`,
+          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
+From. Blitzø
+
+생일 기념 구원 받으시던가···
+From. Lute
+
+천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
+From. Velvette (pilot)`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Emily.mp4`
+        }
+      }
+    };
+
+    // 브금 매핑
+    const bgmMap = {
+      adam: "Cave.mp3",
+      emily: "Falling.mp3"
+    };
+
+    // DOM 참조
+    const gateScreen = document.getElementById("gate-screen");
+    const gateMsg = document.getElementById("gate-message");
+    const gateInput = document.getElementById("gate-input");
+    const gateButton = document.getElementById("gate-button");
+
+    const transitionScreen = document.getElementById("transition-screen");
+    const transitionText = document.getElementById("transition-text");
+
+    const mainScreen = document.getElementById("main-screen");
+    const panel = document.getElementById("content-panel");
+    const panelHeader = document.getElementById("panel-header");
+    const panelBody = document.getElementById("panel-body");
+    const beam = document.getElementById("beam");
+
+    let failCount = 0;
+    let currentScenarioKey = null; // "adam" | "emily"
+
+    // 실패 문구 업데이트
+    function updateFailMessage() {
+      const c = failCount;
+      let msg = "";
+
+      if (c === 1) msg = "[…아니지. 다시.]";
+      else if (c === 2) msg = "[하, 그걸로 들어올 수 있다고 생각했어?]";
+      else if (c === 3) msg = "[헛소리 넣지 말라고 했지?]";
+      else if (c === 4) msg = "[이쯤 되면 일부러 그러는 거지?]";
+      else if (c === 5) msg = "[씨발, 그것도 아니야. 다시.]";
+      else if (c === 6) msg = "[됐어, 마지막 기회다. 또 틀리면 그냥 꺼져.]";
+      else if (c >= 7) msg = "[(*한숨*) …꺼져.]";
+
+      gateMsg.textContent = msg;
+      gateMsg.classList.add("shake");
+      setTimeout(() => gateMsg.classList.remove("shake"), 260);
+    }
+
+    // 코드 확인
+    function handleGateSubmit() {
+      const raw = gateInput.value.trim();
+      if (!raw) return;
+
+      const code = raw.toUpperCase();
+      const scenKey = codeMap[code];
+
+      if (!scenKey) {
+        failCount++;
+        updateFailMessage();
+        gateInput.select();
+        return;
+      }
+
+      currentScenarioKey = scenKey;
+
+      const successMsg =
+        failCount === 0
+          ? "그 정도 머리는 있군. 좋아, 통과."
+          : "그래. 드디어 머리를 썼네. 하, 네 수준에선 기적이지. 들어가.";
+
+      startTransition(successMsg);
+    }
+
+    // 전환 화면 타이핑
+    function startTransition(text) {
+      gateScreen.classList.add("hidden");
+      transitionScreen.classList.remove("hidden");
+      transitionText.innerHTML = "";
+
+      let i = 0;
+      const speed = 45;
+      const cursorSpan = document.createElement("span");
+      cursorSpan.className = "cursor";
+      cursorSpan.textContent = "▌";
+      transitionText.appendChild(cursorSpan);
+
+      function typeStep() {
+        if (i < text.length) {
+          cursorSpan.insertAdjacentText("beforebegin", text.charAt(i));
+          i++;
+          setTimeout(typeStep, speed);
+        } else {
+          setTimeout(() => {
+            transitionScreen.classList.add("hidden");
+            enterMainScreen();
+          }, 600);
+        }
+      }
+
+      typeStep();
+    }
+
+    // 메인 화면 진입 + 브금 세팅
+    function enterMainScreen() {
+      if (!currentScenarioKey) return;
+
+      mainScreen.classList.remove("hidden");
+
+      const bgm = document.getElementById("bgm");
+      const file = bgmMap[currentScenarioKey];
+      bgm.src = file;
+      bgm.volume = 0.55;
+    }
+
+    // 아이콘 클릭 시 콘텐츠 표시
+    function showPanelForIcon(iconIndex, iconButton) {
+      if (!currentScenarioKey) return;
+
+      const scenario = scenarios[currentScenarioKey];
+      const content = scenario.icons[iconIndex];
+      if (!content) return;
+
+      panelHeader.textContent = scenario.header;
+
+      // CREATOR 전용 연출 (icon_3)
+      if (iconIndex === "3") {
+        panelBody.innerHTML = `
+          <div class="creator-line" style="animation-delay:0.00s">🕶 Director · V-Sync</div>
+
+          <div class="creator-line" style="animation-delay:0.10s">
+            「 <span class="highlight-signal">Interest in the signal architect detected。</span> 」
+          </div>
+          <div class="creator-line" style="animation-delay:0.30s">
+            「 신호 설계자에 대한 관심 신호 감지。」
+          </div>
+
+          <div class="creator-line" style="animation-delay:0.45s">
+            「 <span class="highlight-signal">Acknowledgment signal transmitted。Thank you。」 
+          </div>
+          <div class="creator-line" style="animation-delay:0.60s">
+            「 확인 응답 전송 완료。감사합니다。」
+          </div>
+        `;
+      }
+      // 영상 (icon_4)
+      else if (iconIndex === "4") {
+        const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4"
+        panelBody.innerHTML = `
+          <video
+            src="${videoFile}"
+            controls
+            autoplay
+            style="width:100%; border-radius:10px; margin-top:10px;"
+          ></video>
+        `;
+      }
+      // 나머지 텍스트
+      else {
+        panelBody.innerHTML = "<pre>" + content + "</pre>";
+      }
+
+      panel.classList.remove("hidden");
+      panel.classList.remove("panel-animate");
+      void panel.offsetWidth;
+      panel.classList.add("panel-animate");
+
+      shootBeam(iconButton);
+    }
+
+    // 아이콘 → 패널 빔 애니메이션
+    function shootBeam(iconButton) {
+      const iconRect = iconButton.getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+
+      const startX = iconRect.right;
+      const startY = iconRect.top + iconRect.height / 2;
+      const endX = panelRect.left + panelRect.width / 2;
+      const totalWidth = endX - startX;
+
+      const containerRect = document.body.getBoundingClientRect();
+
+      beam.style.top = (startY - containerRect.top) + "px";
+      beam.style.left = (startX - containerRect.left) + "px";
+      beam.style.width = "0";
+      beam.classList.remove("beam-animate");
+      void beam.offsetWidth;
+      beam.style.width = totalWidth + "px";
+      beam.classList.add("beam-animate");
+    }
+
+    // 이벤트 바인딩
+    gateButton.addEventListener("click", handleGateSubmit);
+    gateInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") handleGateSubmit();
+    });
+
+    document.querySelectorAll(".icon-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = btn.getAttribute("data-icon"); // "1" ~ "4"
+        showPanelForIcon(idx, btn);
+      });
+    });
+
+    window.addEventListener("load", () => {
+      gateInput.focus();
+    });
+
+    // 사운드 토글
+    const bgm = document.getElementById("bgm");
+    const soundBtn = document.getElementById("sound-toggle");
+    let soundOn = false;
+
+    soundBtn.addEventListener("click", () => {
+      if (!soundOn) {
+        bgm.play();
+        soundBtn.textContent = "SOUND ON";
+        soundOn = true;
+      } else {
+        bgm.pause();
+        soundBtn.textContent = "SOUND OFF";
+        soundOn = false;
+      }
+    });
+  </script>
+</body>
+</html>
