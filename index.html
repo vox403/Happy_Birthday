@@ -308,17 +308,66 @@
       opacity:0.6;
     }
 
-    @media (max-width: 900px) {
-      .main-inner {
-        padding:20px;
-        gap:20px;
-      }
-      .content-panel {
-        max-width:90vw;
-        min-width:0;
-      }
+/* 모바일 레이아웃 */
+@media (max-width: 900px) {
 
-    }
+  .main-inner {
+    padding: 12px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;      
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 56px;    
+  }
+
+  .sidebar-header {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 0.6rem;         
+    letter-spacing: 0.24em;
+  }
+
+  .icon-btn:first-of-type {
+    margin-left: auto;
+  }
+
+  .icon-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 9px;
+  }
+
+  .icon-btn img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .content-panel {
+    max-width: 100%;
+    min-width: 0;
+    padding: 20px 20px;
+  }
+
+  .content-panel-body {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .footer-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
+  }
+}
+
 
     /* CREATOR 패널 애니메이션 */
     .creator-line {
@@ -753,4 +802,5 @@ From. Velvette (pilot)`,
   </script>
 </body>
 </html>
+
 
