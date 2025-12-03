@@ -434,7 +434,7 @@
     </div>
   </div>
 
-  <!-- 브금 -->
+  <!-- 브금 플레이어 -->
   <audio id="bgm" loop></audio>
 
   <script>
@@ -444,7 +444,7 @@
       "HOLY02E": "emily"
     };
 
-    // 시나리오
+    // 시나리오별 텍스트 & 영상 파일
     const scenarios = {
       adam: {
         header: "VOXTEK // BIRTHDAY CHANNEL : ADAM",
@@ -477,7 +477,7 @@ From. Blitzø
 최초의 인간 딕 마스터 생일 축하드립니다.
 From. Lute
 
-천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
+천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍❤️🔪
 From. Velvette (pilot)`,
           3: `
 🕶 Director · V-Sync
@@ -533,7 +533,7 @@ From. Velvette (pilot)`,
       }
     };
 
-    // 브금
+    // 브금 매핑
     const bgmMap = {
       adam: "Cave.mp3",
       emily: "Falling.mp3"
@@ -651,7 +651,7 @@ From. Velvette (pilot)`,
 
       panelHeader.textContent = scenario.header;
 
-      // CREATOR
+      // CREATOR 전용 연출 (icon_3)
       if (iconIndex === "3") {
         panelBody.innerHTML = `
           <div class="creator-line" style="animation-delay:0.00s">🕶 Director · V-Sync</div>
@@ -671,7 +671,7 @@ From. Velvette (pilot)`,
           </div>
         `;
       }
-      // 영상
+      // 영상 (icon_4)
       else if (iconIndex === "4") {
         const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4"
         panelBody.innerHTML = `
@@ -696,7 +696,7 @@ From. Velvette (pilot)`,
       shootBeam(iconButton);
     }
 
-    // 아이콘 애니메이션
+    // 아이콘 → 패널 빔 애니메이션
     function shootBeam(iconButton) {
       const iconRect = iconButton.getBoundingClientRect();
       const panelRect = panel.getBoundingClientRect();
