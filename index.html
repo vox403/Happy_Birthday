@@ -355,6 +355,7 @@
     max-width: 100%;
     min-width: 0;
     padding: 20px 20px;
+bottom: 40px;
   }
 
   .content-panel-body {
@@ -365,6 +366,7 @@
   .footer-label {
     font-size: 0.52rem;
     letter-spacing: 0.16em;
+bottom: 8px;
   }
 }
 
@@ -489,13 +491,16 @@
   <script>
     // 코드 → 시나리오 매핑
     const codeMap = {
-      "FUCK01A": "adam",
-      "HOLY02E": "emily"
+      "FUCK01A": "Adam",
+      "HOLY02E": "Emily",
+      "HATE03A": "Alastor",
+      "IDOL04V": "Velvette",
+      "RAGE05L": "Lute"
     };
 
     // 시나리오별 텍스트 & 영상 파일
     const scenarios = {
-      adam: {
+      Adam: {
         header: "VOXTEK // BIRTHDAY CHANNEL : ADAM",
         icons: {
           1: `아담, 생일이라고?
@@ -520,13 +525,15 @@ Happy fucking birthday, Adam.
 두 번 죽고 싶은 게 아니라면 말이야.
 
 From. Vox`,
-          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
+          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 
+맛있는 거 먹어라~
 From. Blitzø
 
 최초의 인간 딕 마스터 생일 축하드립니다.
 From. Lute
 
-천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍❤️🔪
+천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 
+칼 안 빌려줄 테니까 (◍•ᴗ•◍❤️🔪
 From. Velvette (pilot)`,
           3: `
 🕶 Director · V-Sync
@@ -538,7 +545,7 @@ From. Velvette (pilot)`,
           4: `Adam.mp4`
         }
       },
-      emily: {
+      Emily: {
         header: "VOXTEK // BIRTHDAY CHANNEL : EMILY",
         icons: {
           1: `흠, 에밀리. 그렇지··· 오늘이 네 생일이라던데.
@@ -548,7 +555,8 @@ From. Velvette (pilot)`,
 
 그러니까──
 네가 지키고 싶어 하는 그 '순결한 이미지', 오늘 하루만큼은 꺼내서 먼지라도 털어. 그리고 웃어.
-천국이든 지옥이든, 네 생일을 이렇게까지 챙겨주는 건 나밖에 없을 테니. 아, 네 친구들이 있다고? 그건 내 알 바가 아니지.
+천국이든 지옥이든, 네 생일을 이렇게까지 챙겨주는 건 나밖에 없을 테니. 
+아, 네 친구들이 있다고? ···그건 내 알 바가 아니지.
 
 * 중략 * 
 
@@ -562,13 +570,15 @@ From. Velvette (pilot)`,
 그럼 오늘 하루는, 내 화면의 빛도 좀 봐주는 게 어때?
 
 From. Vox`,
-          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
+          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 
+맛있는 거 먹어라~
 From. Blitzø
 
 생일 기념 구원 받으시던가···
 From. Lute
 
-천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
+천사 생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 
+칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
 From. Velvette (pilot)`,
           3: `
 🕶 Director · V-Sync
@@ -579,13 +589,197 @@ From. Velvette (pilot)`,
 ── 「 확인 응답 전송 완료。감사합니다。」`,
           4: `Emily.mp4`
         }
-      }
+      },
+      Alastor: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : ALASTOR",
+        icons: {
+          1: `알래스터.
+그래, 오늘이 네 생일이라더군.
+
+···웃기지 않아?
+네 꼴을 떠올리면, 축하해야 할지 아니면 그 웃음부터 갈아엎어야 할지부터 고민하게 된다니까.
+
+네 웃음소리, 말투, 그리고 그 역겨울 만큼 즐거워하는 표정.
+그게 오늘은──평소보다도 유독 내 신경을 긁고 있어.
+생일 선물 따위를 챙겨줄 사이도 아니지만, 혹시 기대했다면 유감이야.
+
+···하. 계약이 끊어졌다고 해서 난 네가 무시할 만한 존재가 된 건 아니야, 알.
+네가 예전처럼 무서웠던 '라디오 악마'가 아닌 것처럼, 나도 변했거든.
+그래, 지금은··· 잠깐의, 아주 작은 실수로 지지율에 약간 문제가 생겼을 뿐이지.
+
+하지만 착각하진 마.
+이딴 문제쯤은 금방 처리하고, 넌 언제든 다시 밟아줄 수 있으니까.
+
+그러니 어쨌든, 네가 태어났다는 오늘.
+적어도 오늘 하루는, 네 엿같은 웃음소리 정도는 참아주는 '관용'을 보여주지.
+
+···뭐, 생일이니 한 번은 말해준다.
+
+──Happy Fucking birthday, Alastor.
+
+그리고 마지막으로.
+내년만큼은 제발,
+내 앞에서 빌어먹을 미소 지으면서 개소리 좀 하지 마.
+진짜로 좆같아서 죽여버리고 싶어지니까.
+
+From. Vox`,
+          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 
+맛있는 거 먹어라~
+From. Blitzø
+
+생일 기념 구원 받으시던가···
+From. Lute
+
+생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 
+칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
+From. Velvette (pilot)`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Alastor.mp4`
+        }
+      },
+      Velvette: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : VELVETTE",
+        icons: {
+          1: `내 사랑스러운 동료 벨벳, 자기야.
+그래, 오늘이 네 생일이지? 내가 그걸 잊을 리가 없잖아.
+
+요즘 네가 좀 서운해했다는 건 알아.
+그래도 내가 널 진심으로 아끼고 있다는 거··· 너는 알고 있지?
+
+너는 우리 VEES의 기둥이자, 브랜드 그 자체야.
+네가 있으니 우리의 팀이 더 완전하게 굴러가고,
+네가 있으니까──나도, 조금은 덜 지루하고 말이야.
+
+솔직히 말하면, 가끔 네가 너무 과격하게 구는 건 걱정되긴 해.
+알잖아? 우리에겐 '이미지'가 얼마나 중요한지.
+
+물론, 내 작은 실수 때문에 계획의 일부가 틀어지긴 했지만···
+나 알잖아, 복스. VoxTek의 완벽한 CEO.
+이 정도는 금방 바로잡을 테니 그냥 믿고 따라와.
+
+넌 내게 필요한 존재야, 벨벳.
+발렌티노와는··· 전혀 다른 의미로 말이지.
+네 그 말도 안 되는 에너지, 폭발적인 센스, 감각.
+그건 인정할 수밖에 없어. 항상 극찬을 하게 된다니까.
+
+내가 굳이 말로 표현하지 않아도 넌 다 알고 있다고 믿지만──
+그래, 오늘만큼은 말로 해줄게.
+
+Happy birthday, Velvette.
+네가 내 앞에 나타나줘서 다행이야.
+
+생일이니까 오늘은 네 마음대로 해도 좋아.
+대신, 너무 위험한 짓은 하지 마.
+네 사고를 처리하는 건··· 지금은 좀 곤란하니까.
+
+그리고 정말로··· 발렌티노 의견을 믿고 움직일 생각은 아니지?
+그건 생일이라고 해도 봐줄 수 없거든. 
+다시 우리의 관계가 과거로 돌아가길 진심으로 바라.
+
+From. Vox`,
+          2: `생일 축하한다~ 
+새해부터 생일이라니 매년 기분이 남다르겠는데? 
+나랑 같이 밴드 지켜줘서 고맙다. 
+나랑 관짝 메이트 하기로 한 거 잊지 말고 평생 나랑 지옥 덕질하자. 
+오늘 맛있는 거 많이 먹고 개쩌는 하루 보내라~
+From. Blitzø
+
+리틀바비걸의 생일을 축하합니다. 
+조회수 100k 넘길 때까지 좋아요 받기 기원.
+From. Lute`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Velvette.mp4`
+        }
+      },
+      Lute: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : LUTE",
+        icons: {
+          1: `루트.  
+그래, 오늘이 네 생일이지?
+어떻게 알았냐고? 천국이든 지옥이든, 이곳에서 내가 모를 수 있는 일이 있다고 생각해? 그렇게 생각했다면··· 유감이야.
+
+···하. 웃기지 않아?  
+아담 뒤에 붙어 다니느라 자기 생일도 제대로 챙길 시간도 없었을 텐데,  
+그 놈이 과연 네 생일을 기억이나 했을까?  
+아니, 네가 기대하던 그 '따뜻한 한마디'라도 해줬을까?
+
+지금은 뒈져버려서 확인할 방법도 없지만──
+뭐, 내 알 바는 아니지.
+
+어쨌든. 답은 네가 제일 잘 알 테니까.  
+이번만큼은 특별히 말해줄게.  
+「Happy fucking birthday, Lute.」  
+어때? 네 상관이 평생 안 해줬던 걸 내가 해줬다는 사실, 잊지 마. 
+
+근데 말이야──  
+너 그 표정 알지? 아담이 한 마디만 던져줘도 은혜라도 입은 것처럼 환하게 웃던 그 병신 같은 충성 미소. 볼 때마다 존나 웃기더라.
+
+아니, 대체 병신 같이 여자를 두 번씩이나 빼앗긴 놈에게 뭐가 아쉬워서 그렇게 목줄을 쥐여준 거지? 혹시··· '인정'이라도 바랐던 거야?  
+이젠 그마저도 못하게 됐네. 두 번째로 유감이야.
+
+하. 병신 같기는.  
+아담은 널 좋아해서 곁에 둔 게 아니야, 루트.  
+그냥 '편해서' 써먹었던 거지.  
+명령하면 기어 다니고, 지랄해도 따라오고,  
+심지어 과거엔 오늘 같은 날에도 그 옆에서 얌전히 대기나 하고 있었을 테고.
+
+그래서 생일 선물로 '진실' 하나 더 주지.  
+네가 그토록 충성심을 갈아 넣어도──  
+아담은 널 '부관' 그 이상으로 본 적 없어.  
+죽기 직전까지도 말이야.  
+그리고 앞으로도, 당연히 그럴 일은 없겠지.
+
+···아, 가슴 아프다고?  
+그럼 VoxTek에서 특별 위로 패키지라도 만들어줄까?  
+「죽은 상관에게 매달리며 앞으로 나아가지 못하는 당신을 위한 30분 회복 세션」  
+딱 너 같은 타입에게 잘 팔리겠네.
+
+남은 올해만큼은 그딴 이미 망한 놈은 버리고,  
+조금은 건실하게 살아보라고.  
+축하 겸 조언이야.
+
+From. Vox`,
+          2: `생일 축하한다~ 항상 나랑 놀아주고 자리 지켜줘서 고맙다. 
+너도 같이 우리 넷이서 관짝 메이트 드가자. 
+오늘 맛있는 거 많이 먹고 개쩌는 하루 보내라. 🥳🥳🥳
+From. Blitzø
+
+생일이라고? 흠. 그렇다면야 내가 특별히 축하해 줘야겠네. 
+이런 기회 잘 없으니까 받아둬, 천사. 
+축하하고, 뭐가 됐든 좋아하는 거 먹으면서 좋은 날 보내도록 해. 
+칼로리는 신경쓰지 마. 뒷감당은 네가 책임질 일이니 상관하지 않을게.
+From. Velvette (pilot)`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Lute.mp4`
+        }
+      },
     };
 
     // 브금 매핑
     const bgmMap = {
-      adam: "Cave.mp3",
-      emily: "Falling.mp3"
+      Adam: "Cave.mp3",
+      Emily: "LastStorm.mp3",
+      Alastor: "Jazz.mp3",
+      Velvette: "Hyperpop.mp3",
+      Lute: "War.mp3"
     };
 
     // DOM 참조
@@ -604,7 +798,7 @@ From. Velvette (pilot)`,
     const beam = document.getElementById("beam");
 
     let failCount = 0;
-    let currentScenarioKey = null; // "adam" | "emily"
+    let currentScenarioKey = null; // "Adam" | "Emily" | "Alastor" | "Velvette" | "Lute"
 
     // 실패 문구 업데이트
     function updateFailMessage() {
@@ -706,7 +900,7 @@ From. Velvette (pilot)`,
           <div class="creator-line" style="animation-delay:0.00s">🕶 Director · V-Sync</div>
 
           <div class="creator-line" style="animation-delay:0.10s">
-            「 <span class="highlight-signal">Interest in the signal architect detected。</span>」
+            「 <span class="highlight-signal">Interest in the signal architect detected。</span> 」
           </div>
           <div class="creator-line" style="animation-delay:0.30s">
             「 신호 설계자에 대한 관심 신호 감지。」
@@ -722,7 +916,7 @@ From. Velvette (pilot)`,
       }
       // 영상 (icon_4)
       else if (iconIndex === "4") {
-        const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4"
+        const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4", "Alastor.mp4"
         panelBody.innerHTML = `
           <video
             src="${videoFile}"
@@ -802,10 +996,3 @@ From. Velvette (pilot)`,
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
