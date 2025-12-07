@@ -487,13 +487,14 @@
   <audio id="bgm" loop></audio>
 
   <script>
-    // 코드 → 시나리오 매핑
+    // 코드맵
     const codeMap = {
       "FUCK01A": "Adam",
       "HOLY02E": "Emily",
       "HATE03A": "Alastor",
       "IDOL04V": "Velvette",
-      "RAGE05L": "Lute"
+      "RAGE05L": "Lute",
+      "HELL06C": "Charlie"
     };
 
     // 시나리오별 텍스트 & 영상 파일
@@ -515,14 +516,14 @@
 
 그래도, 뭐.
 생일은 생일이니까 한 번 더 말해준다.
-Happy fucking birthday, Adam.
+<strong>Happy Fucking birthday, Adam.</strong>
 
 내년에는 제발──
 나한테 말도 안 되는 개짓거리 좀 덜 쳐라. 진심으로.
 예를 들어, 내 안테나를 또 멋대로 잡고 들어올린다던가 하는 짓.
 두 번 죽고 싶은 게 아니라면 말이야.
 
-From. Vox`,
+<span style="color:#00f7ff;">From. Vox</span>`,
           2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
 From. Blitzø
 
@@ -561,11 +562,12 @@ From. Velvette (pilot)`,
 「에밀리 생일 기념, VoxTek 정품 디지털 축복 패키지. 지금 다운로드하세요. 복스테크, 우리를 믿고 당신의 돈을 지불하세요.」
 ···농담이야. 진짜로 만들면 팔릴지는 모르겠지만, 적어도 네 반응은 볼만하네.
 
-어쨌든, Happy Birthday, Emily.
+어쨌든, 
+<strong>Happy Birthday, Emily.</strong>
 네가 지켜보는 곳엔 언제나 빛이 있다던데···
 그럼 오늘 하루는, 내 화면의 빛도 좀 봐주는 게 어때?
 
-From. Vox`,
+<span style="color:#00f7ff;">From. Vox</span>`,
           2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
 From. Blitzø
 
@@ -609,14 +611,14 @@ From. Velvette (pilot)`,
 
 ···뭐, 생일이니 한 번은 말해준다.
 
-──Happy Fucking birthday, Alastor.
+<strong>──Happy Fucking birthday, Alastor.</strong>
 
 그리고 마지막으로.
 내년만큼은 제발,
 내 앞에서 빌어먹을 미소 지으면서 개소리 좀 하지 마.
 진짜로 좆같아서 죽여버리고 싶어지니까.
 
-From. Vox`,
+<span style="color:#00f7ff;">From. Vox</span>`,
           2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
 From. Blitzø
 
@@ -663,7 +665,7 @@ From. Velvette (pilot)`,
 내가 굳이 말로 표현하지 않아도 넌 다 알고 있다고 믿지만──
 그래, 오늘만큼은 말로 해줄게.
 
-Happy birthday, Velvette.
+<strong>Happy birthday, Velvette.</strong>
 네가 내 앞에 나타나줘서 다행이야.
 
 생일이니까 오늘은 네 마음대로 해도 좋아.
@@ -674,7 +676,7 @@ Happy birthday, Velvette.
 그건 생일이라고 해도 봐줄 수 없거든. 
 다시 우리의 관계가 과거로 돌아가길 진심으로 바라.
 
-From. Vox`,
+<span style="color:#00f7ff;">From. Vox</span>`,
           2: `생일 축하한다~ 
 새해부터 생일이라니 매년 기분이 남다르겠는데? 
 나랑 같이 밴드 지켜줘서 고맙다. 
@@ -712,7 +714,7 @@ From. Lute`,
 
 어쨌든. 답은 네가 제일 잘 알 테니까.  
 이번만큼은 특별히 말해줄게.  
-「Happy fucking birthday, Lute.」  
+<strong>「Happy Fucking birthday, Lute.」 </strong>
 어때? 네 상관이 평생 안 해줬던 걸 내가 해줬다는 사실, 잊지 마. 
 
 근데 말이야──  
@@ -742,7 +744,7 @@ From. Lute`,
 조금은 건실하게 살아보라고.  
 축하 겸 조언이야.
 
-From. Vox`,
+<span style="color:#00f7ff;">From. Vox</span>`,
           2: `생일 축하한다~ 
 항상 나랑 놀아주고 자리 지켜줘서 고맙다. 
 너도 같이 우리 넷이서 관짝 메이트 드가자. 
@@ -765,6 +767,73 @@ From. Velvette (pilot)`,
           4: `Lute.mp4`
         }
       },
+      Charlie: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : CHARLIE",
+        icons: {
+          1: `찰리 모닝스타.
+그래, 오늘이 공주님의 생일이라고.
+
+···하. 솔직히 말해서, 
+이런 말을 내가 네게 해줘야 한다는 게 아직도 영 마음에 안 들어.
+분명 한때는, 네 그 순진하고 멍청한 믿음 하나만 비틀면 호텔은 무너지고 넌 울겠지──그렇게 생각했거든.
+
+근데 봐라.
+결국 내가··· 그래, 내 계획이 망가졌지.
+
+웃기지 않아?
+'누구든 구원받을 수 있다'는 네 말은 듣기만 해도 불쾌했는데,
+그 말, 결국 네가 증명해버렸지.
+
+칭찬이라도 해줘야 하나?
+참 대단해. 날 이렇게까지 몰아넣다니. 성가시기까지 하다고.
+
+하지만 말이야, 공주님.
+넌 그 '모두를 구원한다'는 말 때문에 언젠가 크게 다칠 거야.
+세상은 네가 생각하는 것처럼 착하지도, 공정하지도, 두 번째 기회를 줄 만큼 여유롭지도 않거든.
+···그래서 나도 그걸 이용해먹으려고 했던 거고.
+
+그런데도 네가 그 망할 믿음을 버리지 않아서──
+결국 날···
+
+······하.
+그래도 오늘은 네 날이니까 한 마디는 해두지.
+
+<strong>Happy birthday, 'Charlotte' Morningstar.</strong>
+
+왜? 갑자기 본명으로 불리니까 기분이 영 이상해?
+아무렴 어때. 나도 지금 공주님에게 축하 따위를 할 기분은 아니거든.
+
+너처럼 말도 안 되는 희망을 현실로 만들어버리는 괴물이라면,
+···뭐, 그 촌스러운 호텔이 잠깐은 굴러갈 수도 있겠지.
+내가 보기엔 여전히 병신 같은 사업이지만.
+
+어쨌든, 생일은 생일이니까.
+Enjoy your day, Charlie.
+오늘만큼은 내가 널 비웃지 않을게.
+
+대신──
+다시 붙게 된다면, 절대 봐주지 않아.
+그건 약속하지.
+
+<span style="color:#00f7ff;">From. Vox</span>`,
+          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
+From. Blitzø
+
+생일 기념 구원 받으시던가···
+From. Lute
+
+생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
+From. Velvette (pilot)`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Charlie.mp4`
+        }
+      },
     };
 
     // 브금 매핑
@@ -773,7 +842,8 @@ From. Velvette (pilot)`,
       Emily: "LastStorm.mp3",
       Alastor: "Jazz.mp3",
       Velvette: "Hyperpop.mp3",
-      Lute: "War.mp3"
+      Lute: "War.mp3",
+      Charlie: "Sky.mp3"
     };
 
     // DOM 참조
@@ -792,7 +862,7 @@ From. Velvette (pilot)`,
     const beam = document.getElementById("beam");
 
     let failCount = 0;
-    let currentScenarioKey = null; // "Adam" | "Emily" | "Alastor" | "Velvette" | "Lute"
+    let currentScenarioKey = null; // "Adam" | "Emily" | "Alastor" | "Velvette" | "Lute" | "Charlie"
 
     // 실패 문구 업데이트
     function updateFailMessage() {
@@ -990,4 +1060,3 @@ From. Velvette (pilot)`,
   </script>
 </body>
 </html>
-
