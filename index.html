@@ -491,6 +491,7 @@
     const codeMap = {
       "FUCK01A": "Adam",
       "HOLY02E": "Emily",
+      "WOLF03L": "Loona",
       "HATE03A": "Alastor",
       "IDOL04V": "Velvette",
       "RAGE05L": "Lute",
@@ -585,6 +586,64 @@ From. Velvette (pilot)`,
 ── 「 Acknowledgment signal transmitted。Thank you。」
 ── 「 확인 응답 전송 완료。감사합니다。」`,
           4: `Emily.mp4`
+        }
+      },
+      Loona: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : LOONA",
+        icons: {
+          1: `흠, 헬하운드라··· 
+그래, 오늘이 네 생일이라지?
+
+···의외라고 생각했나?
+하, 쓸데없는 걱정은 집어넣어라.
+개인적으로 챙길 생각도, 특별히 말을 걸 이유도 없으니까.
+
+단지 말이지,
+그 광대 임프가 워낙 개짓거리로 유명하니까 옆에 있는 너도 눈에 띄었을 뿐이야.
+뭐, 내가 이 지옥에서 모르는 정보 따위가 있을 리 없잖아.
+하찮은 헬하운드의 생일 정도야 딱히 어려울 것도 없고.
+
+솔직히 말해서 네가 블리츠의 양딸이라는 사실 자체엔 관심 없다.
+다만 그 임프가 얼마나 좆같이 굴어왔는지는, 
+굳이 가까이 있지 않아도 화면 너머로도 충분히 보이더군.
+
+명령은 명령대로, 지랄은 지랄대로, 애정 표현은 항상 타이밍을 놓치고··· 
+대체 왜 곁에 있는지 궁금해질 정도였으니까.
+그래, 그런 사소한 호기심에서 시작하긴 했지만——
+이 지옥에서 미련함은 꽤 희귀한 편이지. 
+···혹은 책임감이거나.
+어느 쪽이든, 별 볼 일 없는 임프 따위가 감당하기엔 과분한 성질이야.
+그러니까 오늘 하루만큼은 네 인생에 조금은 집중해도 되겠지.
+
+마약을 빨든, 술을 마시든, 섹스를 하든, 
+아니면 혼자만의 시간을 보내든——그건 네 선택이겠고.
+
+···착각하지 마. 이건 위로나 응원 따위가 아니야. 그냥 사실을 말하고 있을 뿐이지.
+그러니 기념으로 한 마디 더해주지.
+
+<strong>Happy birthday, Loona.</strong>
+
+내년에도 여전하다면,
+그땐 네가 그 자리를 선택한 이유가 무엇이었는지—
+한 번쯤은, 흥미를 가져줄지도 모르겠군.
+
+<span style="color:#00f7ff;">From. Vox</span>`,
+          2: `사랑하는 울 루니야. 💘💝💖💗💓💞💕❣️❤️‍🔥❤️‍🩹❤🩷🧡💛💚💙🩵💜🤎💟 생일 축하한다. 아빠랑 놀러 여기 와줘서 고마워. 세상에서 제일 예쁜 우리 딸 오늘 행복한 하루 보내렴. (쭈아아아아아아압.)🥰🥰🥰🥰🥰🥰🥰🥰🥰
+From. Blitzø
+
+생일 기념 구원 받으시던가···
+From. Lute
+
+생일이구나? 축하해✨ 케이크는 네가 직접 썰어 먹어. 칼 안 빌려줄 테니까 (◍•ᴗ•◍)❤️🔪
+From. Velvette (pilot)`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Loona.mp4`
         }
       },
       Alastor: {
@@ -895,6 +954,7 @@ From. Velvette (pilot)`,
     const bgmMap = {
       Adam: "Cave.mp3",
       Emily: "LastStorm.mp3",
+      Loona: "Hyperpop.mp3",
       Alastor: "Jazz.mp3",
       Velvette: "Hyperpop.mp3",
       Lute: "War.mp3",
@@ -918,7 +978,7 @@ From. Velvette (pilot)`,
     const beam = document.getElementById("beam");
 
     let failCount = 0;
-    let currentScenarioKey = null; // "Adam" | "Emily" | "Alastor" | "Velvette" | "Lute" | "Blitzø" | "Charlie"
+    let currentScenarioKey = null; // "Adam" | "Emily" | "Loona" | "Alastor" | "Velvette" | "Lute" | "Blitzø" | "Charlie"
 
     // 실패 문구 업데이트
     function updateFailMessage() {
@@ -1036,7 +1096,7 @@ From. Velvette (pilot)`,
       }
       // 영상 (icon_4)
       else if (iconIndex === "4") {
-        const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4", "Alastor.mp4"
+        const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4", "Loona.mp4", "Alastor.mp4", "Velvette.mp4", "Lute.mp4", "Blitzø.mp4", "Charlie.mp4"
         panelBody.innerHTML = `
           <video
             src="${videoFile}"
@@ -1116,4 +1176,3 @@ From. Velvette (pilot)`,
   </script>
 </body>
 </html>
-
