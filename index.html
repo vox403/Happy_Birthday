@@ -496,6 +496,7 @@
       "IDOL04V": "Velvette",
       "RAGE05L": "Lute",
       "BOSS06B": "Blitzø",
+      "FUCK08V": "Valentino",
       "HELL07C": "Charlie"
     };
 
@@ -881,6 +882,53 @@ From. Velvette (pilot)`,
           4: `Blitzø.mp4`
         }
       },
+      Valentino: {
+        header: "VOXTEK // BIRTHDAY CHANNEL : VALENTINO",
+        icons: {
+          1: `······발렌티노.
+
+그래, 오늘이 네 생일이지.
+이런 말을 내가 먼저 꺼내게 될 줄은 솔직히 몰랐어.
+
+네가 지금 어떤 위치에 있는지,
+그리고 내가 어디쯤 서 있는지도──
+굳이 부정할 생각은 없어.
+현실은 현실이니까.
+
+오늘은 네 날이야.
+네가 웃고, 네가 즐기고,
+네가 마음껏 굴어도 되는 날.
+적어도 오늘만큼은,
+내가 굳이 방해할 이유도 없고.
+
+기대하는 말은 아닐 거라는 것도 알아.
+하지만 생일은 생일이니까,
+형식 하나쯤은 맞춰두지.
+
+<strong>Happy birthday, Valentino.</strong>
+
+······그냥 그렇다고.
+의미 부여는 네가 알아서 해.
+
+<span style="color:#00f7ff;">From. Vox</span>`,
+          2: `생일 축하해. 궁디 붙이고 잘 놀아줘서 고맙다~~~ 맛있는 거 먹어라~
+From. Blitzø
+
+생일 기념 구원 받으시던가···
+From. Lute
+
+생일 축하해, 자기야. 자기 생일인 만큼 하고 싶은 거 다 해. 특별히 뭐든 말리지 않을게. (내 모델 찢어놓는 거 빼고.) 오늘만큼은 뭘 하든 좋은 일만 일어날 테니까, 케이크 먹으면서 하루를 즐겨. 연말 잘 보내고 내년에도 쭉 함께 있자.
+From. Velvette`,
+          3: `
+🕶 Director · V-Sync
+── 「 Interest in the signal architect detected。」
+── 「 신호 설계자에 대한 관심 신호 감지。」
+
+── 「 Acknowledgment signal transmitted。Thank you。」
+── 「 확인 응답 전송 완료。감사합니다。」`,
+          4: `Valentino.mp4`
+        }
+      },
       Charlie: {
         header: "VOXTEK // BIRTHDAY CHANNEL : CHARLIE",
         icons: {
@@ -959,6 +1007,7 @@ From. Velvette (pilot)`,
       Velvette: "Hyperpop.mp3",
       Lute: "War.mp3",
       Blitzø: "Pacific.mp3",
+      Valentino: "EDM.mp3",
       Charlie: "Sky.mp3"
     };
 
@@ -978,7 +1027,7 @@ From. Velvette (pilot)`,
     const beam = document.getElementById("beam");
 
     let failCount = 0;
-    let currentScenarioKey = null; // "Adam" | "Emily" | "Loona" | "Alastor" | "Velvette" | "Lute" | "Blitzø" | "Charlie"
+    let currentScenarioKey = null; // "Adam" | "Emily" | "Loona" | "Alastor" | "Velvette" | "Lute" | "Blitzø" | "Valentino" | "Charlie"
 
     // 실패 문구 업데이트
     function updateFailMessage() {
@@ -1096,7 +1145,7 @@ From. Velvette (pilot)`,
       }
       // 영상 (icon_4)
       else if (iconIndex === "4") {
-        const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4", "Loona.mp4", "Alastor.mp4", "Velvette.mp4", "Lute.mp4", "Blitzø.mp4", "Charlie.mp4"
+        const videoFile = content.trim(); // "Adam.mp4", "Emily.mp4", "Loona.mp4", "Alastor.mp4", "Velvette.mp4", "Lute.mp4", "Blitzø.mp4", "Valentino.mp4", "Charlie.mp4"
         panelBody.innerHTML = `
           <video
             src="${videoFile}"
@@ -1176,4 +1225,3 @@ From. Velvette (pilot)`,
   </script>
 </body>
 </html>
-
